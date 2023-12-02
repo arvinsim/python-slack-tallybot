@@ -8,6 +8,13 @@ load_dotenv()
 # Initializes your app with your bot token and socket mode handler
 app = App(token=os.getenv('SLACK_BOT_TOKEN'))
 
+@app.message(":wave:")
+def say_hello(message, say):
+    user = message['user']
+    say(f"Hi there, <@{user}>!")
+
 # Start your app
 if __name__ == "__main__":
     SocketModeHandler(app, os.getenv('SLACK_APP_TOKEN')).start()
+
+
